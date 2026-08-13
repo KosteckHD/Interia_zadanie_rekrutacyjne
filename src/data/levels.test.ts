@@ -47,7 +47,7 @@ describe('parseLevelData', () => {
     expect(result.issues).toContain('The level data is empty or does not contain a levels array.')
   })
 
-  it('reports a board without any safe cells', () => {
+  it('reports a board with no safe cells', () => {
     const result = parseLevelData({
       levels: [{
         id: 'full',
