@@ -10,13 +10,15 @@ type BoardProps = {
 }
 
 export function Board({ board, onReveal, onToggleFlag }: BoardProps) {
-  const boardStyle = { '--board-columns': board.width } as CSSProperties
+  const boardStyle = {
+    '--board-columns': board.width,
+    '--board-rows': board.height,
+  } as CSSProperties
 
   return (
     <section aria-label="Plansza sapera" className="board">
       <div className="board__header">
-        <span>PLANSZA <strong>{board.width}&times;{board.height}</strong></span>
-        <span>LEWY / PRAWY PRZYCISK</span>
+        <span>PLANSZA: <strong>{board.name}, {board.width}&times;{board.height}</strong></span>
       </div>
       <div className="board__scroll">
         <div className="board__grid" style={boardStyle}>

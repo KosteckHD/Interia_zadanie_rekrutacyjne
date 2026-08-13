@@ -45,6 +45,8 @@
 .game__eyebrow,
 .game__counter-label,
 .game__footer {
+  display:flex;
+  flex-direction: column;
   font-family: var(--font-family-mono);
   letter-spacing: var(--letter-spacing-mono);
   text-transform: uppercase;

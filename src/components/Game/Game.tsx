@@ -93,7 +93,6 @@ export function Game({ levels, loadError, isLoading }: GameProps) {
       <section className="game__panel">
         <div className="game__telemetry">
           <div className="game__counter" aria-live="polite">
-            <span aria-hidden="true" className="game__counter-icon">&#9873;</span>
             <div>
               <span className="game__counter-label">POZOSTAŁE MINY</span>
               <strong className="game__counter-value">{remainingMines}</strong>
@@ -121,7 +120,8 @@ export function Game({ levels, loadError, isLoading }: GameProps) {
       )}
 
       <footer className="game__footer">
-        Lewy przycisk myszy odkrywa pole <span aria-hidden="true">·</span> prawy przycisk ustawia lub usuwa flagę
+        <span>Lewy przycisk myszy odkrywa pole <span aria-hidden="true">·</span> prawy przycisk ustawia lub usuwa flagę</span>
+        <span>Made by KosteckHD :D</span>
       </footer>
     </main>
   )
