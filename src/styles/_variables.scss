@@ -56,12 +56,12 @@
   --space-8: 2rem;
   --size-page-min: 20rem;
   --size-viewport-min: 100svh;
-  --size-cell: clamp(2rem, 7vw, 3rem);
-  --size-cell-min: 2rem;
+  --size-cell: clamp(1.25rem, 3vw, 1.75rem);
+  --size-cell-min: 1.25rem;
   --size-content-max: 72rem;
   --size-panel-max: 48rem;
   --size-board-max: 60rem;
-  --size-topbar-height: 4rem;
+  --size-topbar-height: 3rem;
   --size-control-height: 2.75rem;
   --size-select-width: 14rem;
   --size-counter-width: 10rem;
@@ -70,7 +70,7 @@
   --font-size-small: 0.875rem;
   --font-size-label: 0.75rem;
   --font-size-caption: 0.625rem;
-  --font-size-title: clamp(2rem, 6vw, 3.5rem);
+  --font-size-title: clamp(1.5rem, 4vw, 2.5rem);
   --font-size-brand: 1.25rem;
   --font-size-counter: 1.75rem;
   --font-size-cell: 1.125rem;
@@ -80,6 +80,7 @@
   --letter-spacing-wide: 0.08em;
   --letter-spacing-mono: 0.05em;
   --border-width: 1px;
+  --space-cell-gap: 0.125rem;
   --notice-border-width: 0.25rem;
   --focus-width: 0.1875rem;
   --focus-offset: 0.125rem;

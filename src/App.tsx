@@ -5,7 +5,6 @@ import { Game } from './components/Game/Game'
 
 function App() {
   const [levels, setLevels] = useState<Level[]>([])
-  const [dataIssues, setDataIssues] = useState<string[]>([])
   const [loadError, setLoadError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -25,7 +24,6 @@ function App() {
 
         if (isActive) {
           setLevels(result.levels)
-          setDataIssues(result.issues)
           setIsLoading(false)
         }
       } catch (error: unknown) {
@@ -43,7 +41,7 @@ function App() {
     }
   }, [])
 
-  return <Game dataIssues={dataIssues} isLoading={isLoading} levels={levels} loadError={loadError} />
+  return <Game isLoading={isLoading} levels={levels} loadError={loadError} />
 }
 
 export default App

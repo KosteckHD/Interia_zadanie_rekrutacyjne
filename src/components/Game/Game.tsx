@@ -6,7 +6,6 @@ import './Game.scss'
 
 type GameProps = {
   levels: Level[]
-  dataIssues: string[]
   loadError: string | null
   isLoading: boolean
 }
@@ -43,7 +42,7 @@ function getStatusModifier(board: BoardModel | null): string {
   return board.state
 }
 
-export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
+export function Game({ levels, loadError, isLoading }: GameProps) {
   const [selectedLevelId, setSelectedLevelId] = useState('')
   const [board, setBoard] = useState<BoardModel | null>(null)
   const selectedLevel = levels.find((level) => level.id === selectedLevelId) ?? levels[0]
@@ -86,21 +85,12 @@ export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
           <span aria-hidden="true" className="game__brand-mark">&#10033;</span>
           <div>
             <p className="game__brand-name">Saper</p>
-            <p className="game__brand-caption">PLANSZE Z PLIKU</p>
           </div>
         </div>
-        <span className="game__brand-meta">LOGIKA / UI</span>
+        <span className="game__brand-meta">Zadanie rekrutacyjne</span>
       </header>
 
       <section className="game__panel">
-        <header className="game__header">
-          <div>
-            <p className="game__eyebrow">ZADANIE REKRUTACYJNE</p>
-            <h1 className="game__title">Saper</h1>
-            <p className="game__description">Odkrywaj bezpieczne pola i oznaczaj podejrzane miny.</p>
-          </div>
-        </header>
-
         <div className="game__telemetry">
           <div className="game__counter" aria-live="polite">
             <span aria-hidden="true" className="game__counter-icon">&#9873;</span>
@@ -121,12 +111,6 @@ export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
           onRestart={handleRestart}
         />
       </section>
-
-      {dataIssues.length > 0 ? (
-        <p className="game__notice" role="status">
-          Pominięto {dataIssues.length} nieprawidłowych wpisów podczas wczytywania plansz.
-        </p>
-      ) : null}
 
       {currentBoard ? (
         <Board board={currentBoard} onReveal={handleReveal} onToggleFlag={handleToggleFlag} />

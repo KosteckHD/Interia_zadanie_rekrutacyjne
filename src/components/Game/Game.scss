@@ -1,11 +1,11 @@
 .game {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-2);
   margin: var(--space-zero) auto;
   max-width: var(--size-content-max);
   min-height: var(--size-viewport-min);
-  padding: var(--space-zero) var(--space-5) var(--space-8);
+  padding: var(--space-zero) var(--space-5) var(--space-3);
 }
 
 .game__topbar {
@@ -61,14 +61,14 @@
   border: var(--border-width) solid var(--color-panel-border);
   border-radius: var(--radius-medium);
   box-shadow: var(--shadow-panel);
-  margin: var(--space-5) auto var(--space-zero);
+  margin: var(--space-2) auto var(--space-zero);
   max-width: var(--size-panel-max);
   overflow: hidden;
   width: 100%;
 }
 
 .game__header {
-  padding: var(--space-6);
+  padding: var(--space-3) var(--space-6);
 }
 
 .game__eyebrow {
@@ -99,7 +99,7 @@
   flex-wrap: wrap;
   gap: var(--space-4);
   justify-content: space-between;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-1) var(--space-6);
 }
 
 .game__counter {
@@ -172,7 +172,8 @@
   margin-left: auto;
   margin-right: auto;
   max-width: var(--size-board-max);
-  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-small);
+  padding: var(--space-1) var(--space-3);
   width: 100%;
 }
 
