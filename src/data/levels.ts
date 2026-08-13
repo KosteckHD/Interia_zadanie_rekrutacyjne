@@ -127,6 +127,10 @@ function parseLevel(
     )
   }
 
+  if (mines.length === width * height) {
+    issues.push(`Level ${index + 1} has no safe cells; the first mine click will lose.`)
+  }
+
   return {
     id,
     name,

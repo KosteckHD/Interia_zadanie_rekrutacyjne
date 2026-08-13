@@ -46,4 +46,19 @@ describe('parseLevelData', () => {
     expect(result.levels).toEqual([])
     expect(result.issues).toContain('The level data is empty or does not contain a levels array.')
   })
+
+  it('reports a board without any safe cells', () => {
+    const result = parseLevelData({
+      levels: [{
+        id: 'full',
+        name: 'Full',
+        width: 2,
+        height: 1,
+        mineCount: 2,
+        mines: [[0, 0], [1, 0]],
+      }],
+    })
+
+    expect(result.issues).toContain('Level 1 has no safe cells; the first mine click will lose.')
+  })
 })

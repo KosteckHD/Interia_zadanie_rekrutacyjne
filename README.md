@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Przed uruchomieniem aplikacji należy umieścić załączony plik `saper-plansze.json` w `public/saper-plansze.json`. Aplikacja pobiera go podczas startu. W aktualnym środowisku załącznik nie był dostępny, dlatego bez tego pliku aplikacja pokazuje kontrolowany komunikat zamiast przerywać działanie.
+Plik `saper-plansze.json` znajduje się w `public/saper-plansze.json`, a aplikacja pobiera go podczas startu.
 
 Dodatkowe komendy:
 
@@ -31,9 +31,15 @@ Nie dodawałem timera, rankingu, zapisu wyników, losowania plansz, animacji ani
 
 ## 3. Co znalazłem w danych i jak to obsługuję
 
-Załączony plik nie był dostępny w lokalnym katalogu podczas implementacji, więc nie mogę uczciwie wypisać konkretnych poziomów ani potwierdzić ich anomalii. Parser w `src/data/levels.ts` jest przygotowany na dane nieoczyszczone: obsługuje tablicę poziomów oraz obiekt z polem `levels`, odrzuca niepoprawne wymiary, ignoruje współrzędne poza planszą, pomija niepoprawne pary współrzędnych, usuwa duplikaty min i generuje unikalne identyfikatory.
+Plik zawiera siedem poziomów. Znalazłem następujące anomalie:
 
-`mineCount` jest normalizowane do liczby faktycznie poprawnych, unikalnych min, a wykryte problemy są zgłaszane interfejsowi. Po otrzymaniu załącznika należy uruchomić aplikację, przejrzeć komunikaty parsera i uzupełnić ten punkt o konkretne obserwacje z pliku.
+- `rachmistrz` deklaruje 10 min, ale zawiera 12 poprawnych unikalnych współrzędnych;
+- `bliznieta` ma dwukrotnie minę `[2, 2]`, więc po usunięciu duplikatu pozostaje 7 min zamiast deklarowanych 8;
+- `za-plotem` zawiera `[8, 3]`, poza planszą o szerokości 8, więc pozostaje 5 poprawnych min zamiast 6;
+- `ciasno` ma minę na każdym z 9 pól planszy 3×3, więc pierwsze odkrycie nie ma bezpiecznego miejsca do relokacji i zgodnie z regułą kończy się przegraną;
+- `laka` ma zero min i służy jako przypadek pełnej kaskady zakończonej wygraną.
+
+Parser w `src/data/levels.ts` obsługuje dane nieoczyszczone: przyjmuje tablicę poziomów oraz obiekt z polem `levels`, odrzuca niepoprawne wymiary, ignoruje współrzędne poza planszą, pomija niepoprawne pary współrzędnych, usuwa duplikaty min i generuje unikalne identyfikatory. `mineCount` jest normalizowane do liczby faktycznie poprawnych, unikalnych min, a wykryte problemy są zgłaszane interfejsowi.
 
 ## 4. Co było najtrudniejsze
 
