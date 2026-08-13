@@ -1,5 +1,7 @@
 # Saper — zadanie rekrutacyjne
 
+## 0. Czas wykonania 
+  15.50-18.20
 ## 1. Jak uruchomić
 
 Wymagany jest Node.js 20.19+ albo 22.12+ oraz npm.
