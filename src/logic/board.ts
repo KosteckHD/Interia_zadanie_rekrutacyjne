@@ -15,7 +15,6 @@ export type Cell = {
 }
 
 export type Board = {
-  name: string
   width: number
   height: number
   cells: Cell[]
@@ -153,7 +152,6 @@ export function createBoard(level: Level): Board {
   }
 
   return {
-    name: level.name,
     width,
     height,
     cells: recalculateAdjacencies(cells, width, height),

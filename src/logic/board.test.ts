@@ -17,6 +17,7 @@ describe('createBoard', () => {
     expect(board.width).toBe(3)
     expect(board.height).toBe(3)
     expect(board.state).toBe('idle')
+    expect(Object.keys(board).sort()).toEqual(['cells', 'height', 'state', 'width'])
     expect(board.cells).toHaveLength(9)
     expect(board.cells[4]).toMatchObject({ mine: true, adjacent: 0 })
     expect(board.cells[0].adjacent).toBe(1)

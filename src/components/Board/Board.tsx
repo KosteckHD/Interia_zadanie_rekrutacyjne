@@ -5,11 +5,12 @@ import './Board.scss'
 
 type BoardProps = {
   board: BoardModel
+  levelName: string
   onReveal: (index: number) => void
   onToggleFlag: (index: number) => void
 }
 
-export function Board({ board, onReveal, onToggleFlag }: BoardProps) {
+export function Board({ board, levelName, onReveal, onToggleFlag }: BoardProps) {
   const boardStyle = {
     '--board-columns': board.width,
     '--board-rows': board.height,
@@ -18,7 +19,7 @@ export function Board({ board, onReveal, onToggleFlag }: BoardProps) {
   return (
     <section aria-label="Plansza sapera" className="board">
       <div className="board__header">
-        <span>PLANSZA: <strong>{board.name}, {board.width}&times;{board.height}</strong></span>
+        <span>PLANSZA: <strong>{levelName}, {board.width}&times;{board.height}</strong></span>
       </div>
       <div className="board__scroll">
         <div className="board__grid" style={boardStyle}>

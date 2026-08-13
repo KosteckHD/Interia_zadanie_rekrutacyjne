@@ -112,7 +112,12 @@ export function Game({ levels, loadError, isLoading }: GameProps) {
       </section>
 
       {currentBoard ? (
-        <Board board={currentBoard} onReveal={handleReveal} onToggleFlag={handleToggleFlag} />
+        <Board
+          board={currentBoard}
+          levelName={selectedLevel?.name ?? ''}
+          onReveal={handleReveal}
+          onToggleFlag={handleToggleFlag}
+        />
       ) : (
         <div className="game__empty">
           Dodaj <code>public/saper-plansze.json</code>, aby wczytać plansze.
