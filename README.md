@@ -1,75 +1,63 @@
-# React + TypeScript + Vite
+# Saper — zadanie rekrutacyjne
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Jak uruchomić
 
-Currently, two official plugins are available:
+Wymagany jest Node.js z npm.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```powershell
+git clone https://github.com/KosteckHD/Interia_zadanie_rekrutacyjne.git
+cd Interia_zadanie_rekrutacyjne
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Przed uruchomieniem aplikacji należy umieścić załączony plik `saper-plansze.json` w `public/saper-plansze.json`. Aplikacja pobiera go podczas startu. W aktualnym środowisku załącznik nie był dostępny, dlatego bez tego pliku aplikacja pokazuje kontrolowany komunikat zamiast przerywać działanie.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Dodatkowe komendy:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```powershell
+npm test
+npm run lint
+npm run build
 ```
+
+## 2. Co zostało zrobione, a czego nie
+
+Zaimplementowałem czysty moduł `src/logic/board.ts` z wymaganymi typami i funkcjami, w tym pierwsze bezpieczne odkrycie, relokację miny, kaskadę, flagowanie, warunek wygranej, przegraną oraz chording. Logika nie importuje Reacta i operuje na niemutowalnych kopiach planszy.
+
+Interfejs umożliwia wybór poziomu, restart, odkrywanie lewym przyciskiem, flagowanie prawym przyciskiem, podgląd licznika min, komunikaty stanu i pokazanie min po przegranej. Dodałem testy jednostkowe logiki oraz parser danych odporny na błędne wpisy.
+
+Nie dodawałem timera, rankingu, zapisu wyników, losowania plansz, animacji ani zmiany motywu, ponieważ nie należą do wymaganego zakresu.
+
+## 3. Co znalazłem w danych i jak to obsługuję
+
+Załączony plik nie był dostępny w lokalnym katalogu podczas implementacji, więc nie mogę uczciwie wypisać konkretnych poziomów ani potwierdzić ich anomalii. Parser w `src/data/levels.ts` jest przygotowany na dane nieoczyszczone: obsługuje tablicę poziomów oraz obiekt z polem `levels`, odrzuca niepoprawne wymiary, ignoruje współrzędne poza planszą, pomija niepoprawne pary współrzędnych, usuwa duplikaty min i generuje unikalne identyfikatory.
+
+`mineCount` jest normalizowane do liczby faktycznie poprawnych, unikalnych min, a wykryte problemy są zgłaszane interfejsowi. Po otrzymaniu załącznika należy uruchomić aplikację, przejrzeć komunikaty parsera i uzupełnić ten punkt o konkretne obserwacje z pliku.
+
+## 4. Co było najtrudniejsze
+
+Najwięcej uwagi wymagało połączenie pierwszego bezpiecznego odkrycia z późniejszym przeliczeniem wartości `adjacent`. Relokowana mina może zmienić liczby na wielu polach, dlatego po przeniesieniu miny przeliczam całą planszę.
+
+Drugim trudnym przypadkiem jest chording. Kliknięcie odkrytej cyfry uruchamia odkrywanie sąsiadów tylko wtedy, gdy liczba flag jest zgodna z cyfrą; błędna flaga pozostawia prawdziwą minę do odkrycia i powoduje przegraną. Kaskada jest iteracyjna, aby nie zależeć od głębokości stosu wywołań.
+
+## 5. Wykorzystane biblioteki
+
+- React i React DOM — renderowanie interfejsu oraz zarządzanie stanem wybranej planszy.
+- Vite — szybki bundler i serwer developerski dla aplikacji React.
+- TypeScript — ścisłe typowanie kontraktu logiki planszy i komponentów.
+- Sass — organizacja stylów SCSS zgodnie z wymaganiami zadania.
+- Vitest — szybkie testy jednostkowe funkcji z `src/logic/board.ts` oraz parsera danych.
+- ESLint — podstawowa kontrola jakości kodu.
+
+Nie użyłem bibliotek UI, frameworka CSS ani biblioteki do gier siatkowych.
+
+## 6. Co zrobiłbym dalej
+
+Przed użyciem produkcyjnym dodałbym walidację schematu danych wykonywaną również po stronie serwera, testy właściwości dla większej liczby plansz oraz testy komponentów sprawdzające obsługę klawiatury i menu kontekstowego. Rozważyłbym też wydzielenie komunikatów interfejsu do warstwy tłumaczeń i optymalizację renderowania bardzo dużych plansz.
+
+Nie dodawałem tych elementów do zadania, żeby utrzymać zakres zgodny z treścią polecenia.
+
+## 7. Gdzie korzystałem z AI
+
+AI pomogło mi uporządkować plan implementacji, wskazać przypadki brzegowe dla logiki Sapera oraz zaplanować zestaw testów. Kod przeanalizowałem i zweryfikowałem samodzielnie przez testy, lint i kompilację TypeScriptu. Każdą decyzję dotyczącą `board.ts` powinienem umieć wyjaśnić podczas rozmowy technicznej.
