@@ -1,0 +1,16 @@
+.board {
+  background: var(--color-board-background);
+  border: var(--border-width) solid var(--color-board-border);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-board);
+  max-width: 100%;
+  overflow: auto;
+  padding: var(--space-3);
+}
+
+.board__grid {
+  display: grid;
+  gap: var(--space-1);
+  grid-template-columns: repeat(var(--board-columns), var(--size-cell));
+  min-width: max-content;
+}

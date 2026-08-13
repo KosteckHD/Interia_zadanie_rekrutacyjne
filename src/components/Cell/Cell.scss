@@ -1,0 +1,79 @@
+.board__cell {
+  align-items: center;
+  aspect-ratio: 1;
+  background: var(--color-cell-hidden);
+  border: var(--border-width) solid var(--color-cell-border);
+  border-radius: var(--radius-small);
+  color: var(--color-cell-text);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-cell);
+  font-weight: var(--font-weight-bold);
+  justify-content: center;
+  min-width: var(--size-cell-min);
+  padding: var(--space-zero);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  user-select: none;
+  width: var(--size-cell);
+}
+
+.board__cell:hover {
+  background: var(--color-cell-hover);
+}
+
+.board__cell:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.board__cell--revealed {
+  background: var(--color-cell-revealed);
+  border-color: var(--color-cell-revealed-border);
+  cursor: default;
+}
+
+.board__cell--revealed:hover {
+  background: var(--color-cell-revealed);
+}
+
+.board__cell--flagged {
+  color: var(--color-flag);
+}
+
+.board__cell--mine {
+  background: var(--color-mine);
+  color: var(--color-mine-text);
+}
+
+.board__cell--number-1 {
+  color: var(--color-number-1);
+}
+
+.board__cell--number-2 {
+  color: var(--color-number-2);
+}
+
+.board__cell--number-3 {
+  color: var(--color-number-3);
+}
+
+.board__cell--number-4 {
+  color: var(--color-number-4);
+}
+
+.board__cell--number-5 {
+  color: var(--color-number-5);
+}
+
+.board__cell--number-6 {
+  color: var(--color-number-6);
+}
+
+.board__cell--number-7 {
+  color: var(--color-number-7);
+}
+
+.board__cell--number-8 {
+  color: var(--color-number-8);
+}

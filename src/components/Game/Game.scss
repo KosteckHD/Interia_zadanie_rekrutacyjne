@@ -1,0 +1,97 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: var(--space-zero) auto;
+  max-width: var(--size-content-max);
+  min-height: var(--size-viewport-min);
+  padding: var(--space-8) var(--space-5);
+}
+
+.game__header {
+  align-items: end;
+  display: flex;
+  gap: var(--space-5);
+  justify-content: space-between;
+}
+
+.game__eyebrow {
+  color: var(--color-accent);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  margin: var(--space-zero);
+  text-transform: uppercase;
+}
+
+.game__title {
+  color: var(--color-heading);
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-tight);
+  margin: var(--space-1) var(--space-zero);
+}
+
+.game__description {
+  color: var(--color-text-muted);
+  margin: var(--space-zero);
+}
+
+.game__counter {
+  align-items: center;
+  background: var(--color-counter-background);
+  border: var(--border-width) solid var(--color-counter-border);
+  border-radius: var(--radius-medium);
+  display: flex;
+  flex-direction: column;
+  min-width: var(--size-counter-width);
+  padding: var(--space-3);
+}
+
+.game__counter-label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-label);
+}
+
+.game__counter-value {
+  color: var(--color-heading);
+  font-size: var(--font-size-counter);
+  line-height: var(--line-height-tight);
+}
+
+.game__status,
+.game__notice,
+.game__empty,
+.game__footer {
+  margin: var(--space-zero);
+}
+
+.game__status {
+  color: var(--color-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+.game__notice {
+  background: var(--color-notice-background);
+  border-left: var(--notice-border-width) solid var(--color-notice-border);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-3);
+}
+
+.game__empty {
+  background: var(--color-panel-background);
+  border: var(--border-width) dashed var(--color-panel-border);
+  border-radius: var(--radius-medium);
+  color: var(--color-text-muted);
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.game__empty code {
+  color: var(--color-heading);
+  font-family: var(--font-family-mono);
+}
+
+.game__footer {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
