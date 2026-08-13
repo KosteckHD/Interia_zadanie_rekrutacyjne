@@ -2,14 +2,16 @@
 
 ## 1. Jak uruchomić
 
-Wymagany jest Node.js z npm.
+Wymagany jest Node.js 20.19+ albo 22.12+ oraz npm.
 
 ```powershell
 git clone https://github.com/KosteckHD/Interia_zadanie_rekrutacyjne.git
 cd Interia_zadanie_rekrutacyjne
-npm install
+npm ci
 npm run dev
 ```
+
+Weryfikacja instalacji z czystego klonu używa `npm ci`, a następnie `npm test`, `npm run lint` i `npm run build`.
 
 Plik `saper-plansze.json` znajduje się w `public/saper-plansze.json`, a aplikacja pobiera go podczas startu.
 
@@ -39,7 +41,7 @@ Plik zawiera siedem poziomów. Znalazłem następujące anomalie:
 - `ciasno` ma minę na każdym z 9 pól planszy 3×3, więc pierwsze odkrycie nie ma bezpiecznego miejsca do relokacji i zgodnie z regułą kończy się przegraną;
 - `laka` ma zero min i służy jako przypadek pełnej kaskady zakończonej wygraną.
 
-Parser w `src/data/levels.ts` obsługuje dane nieoczyszczone: przyjmuje tablicę poziomów oraz obiekt z polem `levels`, odrzuca niepoprawne wymiary, ignoruje współrzędne poza planszą, pomija niepoprawne pary współrzędnych, usuwa duplikaty min i generuje unikalne identyfikatory. `mineCount` jest normalizowane do liczby faktycznie poprawnych, unikalnych min, a wykryte problemy są zgłaszane interfejsowi.
+Parser w `src/data/levels.ts` obsługuje dane nieoczyszczone: przyjmuje tablicę poziomów oraz obiekt z polem `levels`, odrzuca niepoprawne wymiary, ignoruje współrzędne poza planszą, pomija niepoprawne pary współrzędnych, usuwa duplikaty min i generuje unikalne identyfikatory. `mineCount` jest normalizowane do liczby faktycznie poprawnych, unikalnych min, a wykryte problemy są zbierane w wyniku parsera. Interfejs korzysta z oczyszczonych plansz i nie przerywa działania przez błędny wpis.
 
 ## 4. Co było najtrudniejsze
 
@@ -66,4 +68,4 @@ Nie dodawałem tych elementów do zadania, żeby utrzymać zakres zgodny z treś
 
 ## 7. Gdzie korzystałem z AI
 
-AI pomogło mi uporządkować plan implementacji, wskazać przypadki brzegowe dla logiki Sapera oraz zaplanować zestaw testów. Kod przeanalizowałem i zweryfikowałem samodzielnie przez testy, lint i kompilację TypeScriptu. Każdą decyzję dotyczącą `board.ts` powinienem umieć wyjaśnić podczas rozmowy technicznej.
+AI pomogło mi uporządkować plan implementacji, przeanalizować treść zadania, wskazać przypadki brzegowe dla logiki Sapera, zaplanować testy oraz wykonać przegląd responsywności interfejsu. Kod przeanalizowałem i zweryfikowałem samodzielnie przez testy, lint, instalację z czystej kopii i kompilację TypeScriptu. Każdą decyzję dotyczącą `board.ts` powinienem umieć wyjaśnić podczas rozmowy technicznej.
