@@ -56,8 +56,18 @@
   --space-8: 2rem;
   --size-page-min: 20rem;
   --size-viewport-min: 100svh;
-  --size-cell: clamp(1.5rem, min(5.2vh, 7.5vw), 2.5rem);
-  --size-cell-min: 1.5rem;
+  --size-cell-fluid-min: 1.5rem;
+  --size-cell-fluid-max: 2.5rem;
+  --size-cell-fluid-vh: 5.2vh;
+  --size-cell-fluid-vw: 7.5vw;
+  --size-cell: clamp(var(--size-cell-fluid-min), min(var(--size-cell-fluid-vh), var(--size-cell-fluid-vw)), var(--size-cell-fluid-max));
+  --size-cell-min: var(--size-cell-fluid-min);
+  --size-cell-mobile-min: 1.125rem;
+  --size-cell-mobile-max: 2.5rem;
+  --size-cell-mobile-vh: 5.2vh;
+  --size-cell-mobile-vw: 7.5vw;
+  --size-cell-mobile-width-reserve: 5rem;
+  --size-cell-mobile-height-reserve: 30rem;
   --size-content-max: 72rem;
   --size-panel-max: 48rem;
   --size-board-max: 60rem;
@@ -65,6 +75,7 @@
   --size-control-height: 2.75rem;
   --size-select-width: 14rem;
   --size-counter-width: 10rem;
+  --size-status-flex-basis: 12rem;
   --font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
   --font-size-small: 0.875rem;

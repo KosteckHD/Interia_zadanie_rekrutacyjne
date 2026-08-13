@@ -68,7 +68,7 @@
   }
 
   .board__grid {
-    --size-cell: clamp(1.125rem, min(5.2vh, 7.5vw, calc((100vw - 5rem) / var(--board-columns)), calc((100vh - 30rem) / var(--board-rows))), 2.5rem);
+    --size-cell: clamp(var(--size-cell-mobile-min), min(var(--size-cell-mobile-vh), var(--size-cell-mobile-vw), calc((100vw - var(--size-cell-mobile-width-reserve)) / var(--board-columns)), calc((100vh - var(--size-cell-mobile-height-reserve)) / var(--board-rows))), var(--size-cell-mobile-max));
     --size-cell-min: var(--size-cell);
     grid-template-columns: repeat(var(--board-columns), var(--size-cell));
     min-width: 0;

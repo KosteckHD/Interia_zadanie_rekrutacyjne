@@ -135,7 +135,7 @@
   border: var(--border-width) solid var(--color-telemetry-border);
   border-radius: var(--radius-pill);
   color: var(--color-status-idle);
-  flex: 1 1 12rem;
+  flex: 1 1 var(--size-status-flex-basis);
   font-family: var(--font-family-mono);
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-bold);
