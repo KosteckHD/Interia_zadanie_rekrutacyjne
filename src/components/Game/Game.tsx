@@ -13,26 +13,26 @@ type GameProps = {
 
 function getStatusLabel(board: BoardModel | null, isLoading: boolean, loadError: string | null): string {
   if (loadError) {
-    return 'Nie udało się wczytać plansz.'
+    return 'BŁĄD WCZYTYWANIA'
   }
 
   if (isLoading) {
-    return 'Wczytywanie plansz...'
+    return 'WCZYTYWANIE'
   }
 
   if (!board) {
-    return 'Brak dostępnej planszy.'
+    return 'BRAK PLANSZY'
   }
 
   if (board.state === 'won') {
-    return 'Wygrana!'
+    return 'WYGRANA'
   }
 
   if (board.state === 'lost') {
-    return 'Przegrana — miny zostały odkryte.'
+    return 'PRZEGRANA'
   }
 
-  return board.state === 'idle' ? 'Kliknij pole, aby rozpocząć.' : 'Gra w toku.'
+  return board.state === 'idle' ? 'OCZEKUJE' : 'GRA W TOKU'
 }
 
 function getStatusModifier(board: BoardModel | null): string {
@@ -86,16 +86,16 @@ export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
           <span aria-hidden="true" className="game__brand-mark">&#10033;</span>
           <div>
             <p className="game__brand-name">Saper</p>
-            <p className="game__brand-caption">PREDEFINED BOARDS</p>
+            <p className="game__brand-caption">PLANSZE Z PLIKU</p>
           </div>
         </div>
-        <span className="game__brand-meta">LOGIC / UI</span>
+        <span className="game__brand-meta">LOGIKA / UI</span>
       </header>
 
       <section className="game__panel">
         <header className="game__header">
           <div>
-            <p className="game__eyebrow">Frontend recruitment task</p>
+            <p className="game__eyebrow">ZADANIE REKRUTACYJNE</p>
             <h1 className="game__title">Saper</h1>
             <p className="game__description">Odkrywaj bezpieczne pola i oznaczaj podejrzane miny.</p>
           </div>
