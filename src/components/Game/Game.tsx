@@ -13,26 +13,34 @@ type GameProps = {
 
 function getStatusLabel(board: BoardModel | null, isLoading: boolean, loadError: string | null): string {
   if (loadError) {
-    return loadError
+    return 'Nie udało się wczytać plansz.'
   }
 
   if (isLoading) {
-    return 'Loading board data...'
+    return 'Wczytywanie plansz...'
   }
 
   if (!board) {
-    return 'No playable board is available.'
+    return 'Brak dostępnej planszy.'
   }
 
   if (board.state === 'won') {
-    return 'You won!'
+    return 'Wygrana!'
   }
 
   if (board.state === 'lost') {
-    return 'Game over. Mines are shown.'
+    return 'Przegrana — miny zostały odkryte.'
   }
 
-  return board.state === 'idle' ? 'Choose a cell to start.' : 'Game in progress.'
+  return board.state === 'idle' ? 'Kliknij pole, aby rozpocząć.' : 'Gra w toku.'
+}
+
+function getStatusModifier(board: BoardModel | null): string {
+  if (!board) {
+    return 'idle'
+  }
+
+  return board.state
 }
 
 export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
@@ -73,32 +81,50 @@ export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
 
   return (
     <main className="game">
-      <header className="game__header">
-        <div>
-          <p className="game__eyebrow">Frontend recruitment task</p>
-          <h1 className="game__title">Minesweeper</h1>
-          <p className="game__description">Reveal safe cells, flag suspected mines, and clear the board.</p>
+      <header className="game__topbar">
+        <div className="game__brand">
+          <span aria-hidden="true" className="game__brand-mark">&#10033;</span>
+          <div>
+            <p className="game__brand-name">Saper</p>
+            <p className="game__brand-caption">PREDEFINED BOARDS</p>
+          </div>
         </div>
-        <div className="game__counter" aria-live="polite">
-          <span className="game__counter-label">Mines left</span>
-          <strong className="game__counter-value">{remainingMines}</strong>
-        </div>
+        <span className="game__brand-meta">LOGIC / UI</span>
       </header>
 
-      <GameControls
-        levels={levels}
-        selectedLevelId={selectedLevel?.id ?? ''}
-        onLevelChange={handleLevelChange}
-        onRestart={handleRestart}
-      />
+      <section className="game__panel">
+        <header className="game__header">
+          <div>
+            <p className="game__eyebrow">Frontend recruitment task</p>
+            <h1 className="game__title">Saper</h1>
+            <p className="game__description">Odkrywaj bezpieczne pola i oznaczaj podejrzane miny.</p>
+          </div>
+        </header>
 
-      <p aria-live="polite" className="game__status">
-        {getStatusLabel(currentBoard, isLoading, loadError)}
-      </p>
+        <div className="game__telemetry">
+          <div className="game__counter" aria-live="polite">
+            <span aria-hidden="true" className="game__counter-icon">&#9873;</span>
+            <div>
+              <span className="game__counter-label">POZOSTAŁE MINY</span>
+              <strong className="game__counter-value">{remainingMines}</strong>
+            </div>
+          </div>
+          <p aria-live="polite" className={`game__status game__status--${getStatusModifier(currentBoard)}`}>
+            {getStatusLabel(currentBoard, isLoading, loadError)}
+          </p>
+        </div>
+
+        <GameControls
+          levels={levels}
+          selectedLevelId={selectedLevel?.id ?? ''}
+          onLevelChange={handleLevelChange}
+          onRestart={handleRestart}
+        />
+      </section>
 
       {dataIssues.length > 0 ? (
         <p className="game__notice" role="status">
-          {dataIssues.length} invalid data entries were ignored while loading the boards.
+          Pominięto {dataIssues.length} nieprawidłowych wpisów podczas wczytywania plansz.
         </p>
       ) : null}
 
@@ -106,12 +132,12 @@ export function Game({ levels, dataIssues, loadError, isLoading }: GameProps) {
         <Board board={currentBoard} onReveal={handleReveal} onToggleFlag={handleToggleFlag} />
       ) : (
         <div className="game__empty">
-          Add <code>public/saper-plansze.json</code> to load the predefined boards.
+          Dodaj <code>public/saper-plansze.json</code>, aby wczytać plansze.
         </div>
       )}
 
       <footer className="game__footer">
-        Left click reveals a cell. Right click toggles a flag.
+        Lewy przycisk myszy odkrywa pole <span aria-hidden="true">·</span> prawy przycisk ustawia lub usuwa flagę
       </footer>
     </main>
   )

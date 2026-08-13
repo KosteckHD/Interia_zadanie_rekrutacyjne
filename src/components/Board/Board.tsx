@@ -13,18 +13,24 @@ export function Board({ board, onReveal, onToggleFlag }: BoardProps) {
   const boardStyle = { '--board-columns': board.width } as CSSProperties
 
   return (
-    <section aria-label="Minesweeper board" className="board">
-      <div className="board__grid" style={boardStyle}>
-        {board.cells.map((cell, index) => (
-          <Cell
-            cell={cell}
-            gameState={board.state}
-            index={index}
-            key={index}
-            onReveal={onReveal}
-            onToggleFlag={onToggleFlag}
-          />
-        ))}
+    <section aria-label="Plansza sapera" className="board">
+      <div className="board__header">
+        <span>PLANSZA <strong>{board.width}&times;{board.height}</strong></span>
+        <span>LEWY / PRAWY PRZYCISK</span>
+      </div>
+      <div className="board__scroll">
+        <div className="board__grid" style={boardStyle}>
+          {board.cells.map((cell, index) => (
+            <Cell
+              cell={cell}
+              gameState={board.state}
+              index={index}
+              key={index}
+              onReveal={onReveal}
+              onToggleFlag={onToggleFlag}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

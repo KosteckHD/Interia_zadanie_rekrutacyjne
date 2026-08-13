@@ -5,23 +5,77 @@
   margin: var(--space-zero) auto;
   max-width: var(--size-content-max);
   min-height: var(--size-viewport-min);
-  padding: var(--space-8) var(--space-5);
+  padding: var(--space-zero) var(--space-5) var(--space-8);
+}
+
+.game__topbar {
+  align-items: center;
+  border-bottom: var(--border-width) solid var(--color-surface-border);
+  display: flex;
+  height: var(--size-topbar-height);
+  justify-content: space-between;
+}
+
+.game__brand {
+  align-items: center;
+  display: flex;
+  gap: var(--space-3);
+}
+
+.game__brand-mark {
+  color: var(--color-accent);
+  font-size: var(--font-size-brand);
+  line-height: var(--line-height-tight);
+}
+
+.game__brand-name,
+.game__brand-caption {
+  margin: var(--space-zero);
+}
+
+.game__brand-name {
+  color: var(--color-heading);
+  font-size: var(--font-size-brand);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.game__brand-caption,
+.game__brand-meta,
+.game__eyebrow,
+.game__counter-label,
+.game__footer {
+  font-family: var(--font-family-mono);
+  letter-spacing: var(--letter-spacing-mono);
+  text-transform: uppercase;
+}
+
+.game__brand-caption,
+.game__brand-meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+}
+
+.game__panel {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-panel-border);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-panel);
+  margin: var(--space-5) auto var(--space-zero);
+  max-width: var(--size-panel-max);
+  overflow: hidden;
+  width: 100%;
 }
 
 .game__header {
-  align-items: end;
-  display: flex;
-  gap: var(--space-5);
-  justify-content: space-between;
+  padding: var(--space-6);
 }
 
 .game__eyebrow {
   color: var(--color-accent);
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wide);
   margin: var(--space-zero);
-  text-transform: uppercase;
 }
 
 .game__title {
@@ -36,44 +90,81 @@
   margin: var(--space-zero);
 }
 
+.game__telemetry {
+  align-items: center;
+  background: var(--color-telemetry-background);
+  border-bottom: var(--border-width) solid var(--color-telemetry-border);
+  border-top: var(--border-width) solid var(--color-telemetry-border);
+  display: flex;
+  gap: var(--space-4);
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+}
+
 .game__counter {
   align-items: center;
-  background: var(--color-counter-background);
-  border: var(--border-width) solid var(--color-counter-border);
-  border-radius: var(--radius-medium);
   display: flex;
-  flex-direction: column;
+  gap: var(--space-2);
   min-width: var(--size-counter-width);
-  padding: var(--space-3);
 }
 
-.game__counter-label {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-label);
-}
-
-.game__counter-value {
-  color: var(--color-heading);
+.game__counter-icon {
+  color: var(--color-status-lost);
   font-size: var(--font-size-counter);
   line-height: var(--line-height-tight);
 }
 
-.game__status,
+.game__counter-label {
+  color: var(--color-heading);
+  display: block;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+}
+
+.game__counter-value {
+  color: var(--color-heading);
+  display: block;
+  font-size: var(--font-size-counter);
+  line-height: var(--line-height-tight);
+}
+
+.game__status {
+  border: var(--border-width) solid var(--color-telemetry-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-status-idle);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-mono);
+  margin: var(--space-zero);
+  max-width: 55%;
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.game__status--playing {
+  color: var(--color-status-playing);
+}
+
+.game__status--won {
+  color: var(--color-status-won);
+}
+
+.game__status--lost {
+  color: var(--color-status-lost);
+}
+
 .game__notice,
 .game__empty,
 .game__footer {
   margin: var(--space-zero);
 }
 
-.game__status {
-  color: var(--color-heading);
-  font-weight: var(--font-weight-bold);
-}
-
 .game__notice {
   background: var(--color-notice-background);
   border-left: var(--notice-border-width) solid var(--color-notice-border);
-  color: var(--color-text-muted);
+  color: var(--color-text);
   padding: var(--space-2) var(--space-3);
 }
 
@@ -94,4 +185,5 @@
 .game__footer {
   color: var(--color-text-muted);
   font-size: var(--font-size-small);
+  text-align: center;
 }

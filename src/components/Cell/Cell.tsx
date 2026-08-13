@@ -12,27 +12,29 @@ type CellProps = {
 
 function getCellLabel(cell: CellModel, gameState: Board['state']): string {
   if (cell.flagged) {
-    return 'Flagged cell'
+    return 'Oflagowane pole'
   }
 
   if (cell.mine && (cell.revealed || gameState === 'lost')) {
-    return 'Mine'
+    return 'Mina'
   }
 
   if (!cell.revealed) {
-    return 'Hidden cell'
+    return 'Zakryte pole'
   }
 
-  return cell.adjacent > 0 ? `Revealed cell with ${cell.adjacent} adjacent mines` : 'Empty revealed cell'
+  return cell.adjacent > 0
+    ? `Odkryte pole z ${cell.adjacent} sąsiednimi minami`
+    : 'Puste odkryte pole'
 }
 
 function getCellContent(cell: CellModel, gameState: Board['state']): string {
   if (cell.flagged) {
-    return '⚑'
+    return String.fromCodePoint(9873)
   }
 
   if (cell.mine && (cell.revealed || gameState === 'lost')) {
-    return '✹'
+    return String.fromCodePoint(10033)
   }
 
   return cell.revealed && cell.adjacent > 0 ? String(cell.adjacent) : ''

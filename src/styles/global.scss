@@ -20,6 +20,11 @@ body {
   min-width: var(--size-page-min);
 }
 
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
 button,
 select {
   font: inherit;

@@ -13,13 +13,14 @@
   justify-content: center;
   min-width: var(--size-cell-min);
   padding: var(--space-zero);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
   user-select: none;
   width: var(--size-cell);
 }
 
 .board__cell:hover {
   background: var(--color-cell-hover);
+  transform: translateY(calc(var(--space-zero) - var(--border-width)));
 }
 
 .board__cell:focus-visible {
@@ -35,6 +36,7 @@
 
 .board__cell--revealed:hover {
   background: var(--color-cell-revealed);
+  transform: none;
 }
 
 .board__cell--flagged {
